@@ -1,4 +1,5 @@
 import { RotateCcw, Dumbbell } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ChatHeaderProps {
   hasMessages: boolean;
@@ -30,14 +31,16 @@ export function ChatHeader({ hasMessages, onReset }: ChatHeaderProps) {
       </div>
 
       {hasMessages && (
-        <button
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={onReset}
           title="Reset Routine"
-          className="p-2 hover:bg-white/5 rounded-full transition-colors text-white/40 hover:text-[var(--gym-blue)] active:scale-95 flex items-center gap-2"
+          className="hover:bg-white/5 rounded-full transition-colors text-white/40 hover:text-[var(--gym-blue)] active:scale-95 flex items-center gap-2 h-9 px-3"
         >
           <RotateCcw size={18} />
           <span className="text-xs font-bold uppercase hidden sm:inline-block">Hard Reset</span>
-        </button>
+        </Button>
       )}
     </header>
   );

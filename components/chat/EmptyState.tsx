@@ -1,5 +1,6 @@
 import { Trophy, ChevronRight } from "lucide-react";
 import { QuickPrompt } from "@/types/chat";
+import { Button } from "@/components/ui/button";
 
 interface EmptyStateProps {
   prompts: QuickPrompt[];
@@ -24,27 +25,28 @@ export function EmptyState({ prompts, onPromptClick }: EmptyStateProps) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl">
         {prompts.map((p) => (
-          <button
+          <Button
             key={p.label}
+            variant="outline"
             onClick={() => onPromptClick(p.label)}
-            className="flex items-center justify-between group p-4 bg-[#121212]/80 backdrop-blur-sm border border-white/5 rounded-xl hover:border-[var(--gym-blue)]/50 transition-all hover:bg-[#181818] shadow-lg hover:shadow-[var(--gym-blue)]/10"
+            className="flex h-auto w-full items-center justify-between group p-4 bg-[#121212]/80 backdrop-blur-sm border-white/5 rounded-xl hover:border-[var(--gym-blue)]/50 transition-all hover:bg-[#181818] shadow-lg hover:shadow-[var(--gym-blue)]/10"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[var(--gym-blue)] group-hover:bg-[var(--gym-blue)]/10 group-hover:scale-110 transition-all">
+            <div className="flex items-center gap-3 overflow-hidden">
+              <div className="w-8 h-8 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center text-[var(--gym-blue)] group-hover:bg-[var(--gym-blue)]/10 group-hover:scale-110 transition-all">
                 {p.icon}
               </div>
-              <span className="text-sm font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors text-left max-w-[150px] sm:max-w-none truncate sm:overflow-visible">
+              <span className="text-sm font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors text-left truncate">
                 {p.label}
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-white/5 transition-colors">
+            <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-white/5 transition-colors">
               <ChevronRight
                 size={16}
                 className="text-white/20 group-hover:text-[var(--gym-blue)] transition-colors"
                 strokeWidth={3}
               />
             </div>
-          </button>
+          </Button>
         ))}
       </div>
     </div>
