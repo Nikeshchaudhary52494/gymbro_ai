@@ -112,13 +112,13 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[var(--gym-black)] text-white overflow-hidden relative">
+    <div suppressHydrationWarning className="flex flex-col h-screen bg-slate-50 dark:bg-[#080808] text-slate-900 dark:text-white overflow-hidden relative transition-colors duration-500">
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
       {/* Background Textures */}
-      <div className="absolute inset-0 carbon-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[80%] bg-[var(--gym-blue)]/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[50%] bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-10" />
+      <div suppressHydrationWarning className="absolute inset-0 carbon-grid opacity-100 dark:opacity-30 pointer-events-none transition-opacity duration-500" />
+      <div suppressHydrationWarning className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[80%] bg-blue-500/10 dark:bg-[#00d4ff]/5 blur-[120px] pointer-events-none transition-colors duration-500" />
+      <div suppressHydrationWarning className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[50%] bg-gradient-to-t from-slate-50 dark:from-black/90 to-transparent pointer-events-none z-10 transition-colors duration-500" />
 
       {/* Header */}
       <ChatHeader hasMessages={messages.length > 0} onReset={() => setMessages([])} />

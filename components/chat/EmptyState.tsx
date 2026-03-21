@@ -15,11 +15,11 @@ export function EmptyState({ prompts, onPromptClick }: EmptyStateProps) {
         <div className="absolute inset-0 blur-3xl bg-[var(--gym-blue)]/30 group-hover:bg-[var(--gym-blue)]/50 transition-colors duration-500" />
       </div>
       
-      <h2 className="gym-heading text-5xl md:text-7xl mb-4 italic text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
+      <h2 className="gym-heading text-5xl md:text-7xl mb-4 italic text-transparent bg-clip-text bg-gradient-to-b from-black to-black/60 dark:from-white dark:to-white/60 transition-colors">
         NO PAIN <br /> <span className="text-[var(--gym-blue)] bg-none! drop-shadow-md">NO GAIN</span>
       </h2>
       
-      <p className="text-white/40 max-w-sm mb-12 text-sm font-bold uppercase tracking-widest leading-relaxed">
+      <p className="text-black/40 dark:text-white/40 max-w-sm mb-12 text-sm font-bold uppercase tracking-widest leading-relaxed transition-colors">
         The ultimate AI spotter for your workouts, nutrition, and mental grit.
       </p>
 
@@ -29,20 +29,20 @@ export function EmptyState({ prompts, onPromptClick }: EmptyStateProps) {
             key={p.label}
             variant="outline"
             onClick={() => onPromptClick(p.label)}
-            className="flex h-auto w-full items-center justify-between group p-4 bg-[#121212]/80 backdrop-blur-sm border-white/5 rounded-xl hover:border-[var(--gym-blue)]/50 transition-all hover:bg-[#181818] shadow-lg hover:shadow-[var(--gym-blue)]/10"
+            className="flex h-auto w-full items-center justify-between group p-4 bg-zinc-100/80 dark:bg-[#121212]/80 backdrop-blur-sm border-black/5 dark:border-white/5 rounded-xl hover:border-[var(--gym-blue)]/50 transition-all hover:bg-zinc-200 dark:hover:bg-[#181818] shadow-lg hover:shadow-[var(--gym-blue)]/10"
           >
             <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-8 h-8 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center text-[var(--gym-blue)] group-hover:bg-[var(--gym-blue)]/10 group-hover:scale-110 transition-all">
+              <div className="w-8 h-8 flex-shrink-0 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-[var(--gym-blue)] group-hover:bg-[var(--gym-blue)]/10 group-hover:scale-110 transition-all">
                 {p.icon}
               </div>
-              <span className="text-sm font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors text-left truncate">
+              <span className="text-sm font-black uppercase tracking-tight text-black/70 group-hover:text-black dark:text-white/70 dark:group-hover:text-white transition-colors text-left truncate">
                 {p.label}
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-white/5 transition-colors">
+            <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors">
               <ChevronRight
                 size={16}
-                className="text-white/20 group-hover:text-[var(--gym-blue)] transition-colors"
+                className="text-black/20 group-hover:text-[var(--gym-blue)] dark:text-white/20 dark:group-hover:text-[var(--gym-blue)] transition-colors"
                 strokeWidth={3}
               />
             </div>
