@@ -13,8 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fitbot ai",
-  description: "A fitness assistant powered by AI",
+  title: "GymBro AI — Your Personal Fitness Buddy",
+  description:
+    "Chat with GymBro AI for workout plans, nutrition advice, form tips, and daily motivation. Your no-BS gym buddy, available 24/7.",
+  openGraph: {
+    title: "GymBro AI",
+    description:
+      "Your AI-powered gym buddy for workouts, nutrition & motivation.",
+  },
 };
 
 export default function RootLayout({
