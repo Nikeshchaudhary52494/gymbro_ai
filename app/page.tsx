@@ -90,7 +90,7 @@ export default function ChatPage() {
       if (data.content) {
         const assistantMsg: Message = {
           id: crypto.randomUUID(),
-          role: "assistant", // Using 'assistant' UI-side, the API mapped it to 'model' for Gemini internally
+          role: "assistant",
           content: data.content,
         };
         setMessages((prev) => [...prev, assistantMsg]);
