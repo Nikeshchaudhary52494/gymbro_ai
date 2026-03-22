@@ -1,7 +1,6 @@
-import { Send } from "lucide-react";
 import { useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 
 interface ChatInputProps {
   input: string;
@@ -10,7 +9,12 @@ interface ChatInputProps {
   isLoading: boolean;
 }
 
-export function ChatInput({ input, setInput, onSubmit, isLoading }: ChatInputProps) {
+export function ChatInput({
+  input,
+  setInput,
+  onSubmit,
+  isLoading,
+}: ChatInputProps) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -37,17 +41,22 @@ export function ChatInput({ input, setInput, onSubmit, isLoading }: ChatInputPro
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type your PR goal or ask for a split..."
-            className="w-full bg-zinc-100 dark:bg-[#121212] border-black/10 dark:border-white/10 rounded-xl py-4 pl-5 pr-16 text-sm focus-visible:ring-1 focus-visible:ring-[var(--gym-blue)] transition-colors resize-none placeholder:text-black/30 dark:placeholder:text-white/20 font-medium shadow-inner min-h-[56px]"
+            className="w-full bg-zinc-100 dark:bg-gym-card border-black/10 dark:border-white/10 rounded-xl py-4 pl-5 pr-16 text-sm focus-visible:ring-1 focus-visible:ring-(--gym-blue) transition-colors resize-none placeholder:text-black/30 dark:placeholder:text-white/20 font-medium shadow-inner min-h-14"
             disabled={isLoading}
           />
-          <Button
-            size="icon"
+          <button
             onClick={() => onSubmit()}
             disabled={!input.trim() || isLoading}
-            className="absolute right-2 w-12 h-10 bg-[var(--gym-blue)] hover:bg-[#33deff] text-white dark:text-black rounded-lg flex items-center justify-center transition-all active:scale-90 group-focus-within:shadow-[0_0_15px_rgba(0,212,255,0.4)]"
+            className="absolute right-2 flex items-center justify-center transition-all active:scale-90 group-focus-within:drop-shadow-[0_0_15px_rgba(0,212,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed hover:brightness-110"
           >
-            <Send size={20} className="stroke-[2.5px] ml-1" />
-          </Button>
+            <Image
+              src="/send-btn.png"
+              alt="Send"
+              width={48}
+              height={40}
+              className="w-20 h-20 object-contain"
+            />
+          </button>
         </div>
       </div>
       <p className="text-center text-[10px] uppercase tracking-[0.3em] font-black text-black/30 dark:text-white/20 mt-4 italic transition-colors">

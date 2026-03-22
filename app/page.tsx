@@ -21,10 +21,10 @@ const QUICK_PROMPTS: QuickPrompt[] = [
     label: "Meal plan for Lean Bulk",
     category: "nutrition",
   },
-  { 
-    icon: <Target size={18} strokeWidth={2.5} />, 
-    label: "Fix my Squat Depth", 
-    category: "form" 
+  {
+    icon: <Target size={18} strokeWidth={2.5} />,
+    label: "Fix my Squat Depth",
+    category: "form",
   },
   {
     icon: <Brain size={18} strokeWidth={2.5} />,
@@ -71,11 +71,17 @@ export default function ChatPage() {
       if (!response.ok) {
         // Handle specific status codes for proper gym-vibe error messaging
         if (response.status === 429) {
-          throw new Error("API Limit Reached! Credits exhausted. Take a rest set and try again later.");
+          throw new Error(
+            "API Limit Reached! Credits exhausted. Take a rest set and try again later.",
+          );
         } else if (response.status === 401) {
-          throw new Error("API Key issue. Check your gym pass (supporter info)!");
+          throw new Error(
+            "API Key issue. Check your gym pass (supporter info)!",
+          );
         } else if (response.status === 500) {
-          throw new Error("Server is dropping the weights! API not responding.");
+          throw new Error(
+            "Server is dropping the weights! API not responding.",
+          );
         } else {
           throw new Error(data.error || "Something went wrong on the lift.");
         }
@@ -91,19 +97,17 @@ export default function ChatPage() {
       }
     } catch (error: any) {
       console.error("Chat Error:", error);
-      
-      // Determine if it's a network error (api not responding) or something else
-      const isNetworkError = error.name === "TypeError" && error.message === "Failed to fetch";
-      
+
+      const isNetworkError =
+        error.name === "TypeError" && error.message === "Failed to fetch";
+
       toast({
         title: "Workout Interrupted!",
-        description: isNetworkError 
+        description: isNetworkError
           ? "API is not responding! Check your connection or the server status."
           : error.message || "Failed to complete the set. Try again.",
       });
-      
-      // Remove the user's message if it failed, or keep it so they can retry?
-      // Reverting the message so they don't lose context, but populate the input box again.
+
       setMessages((prev) => prev.slice(0, -1));
       setInput(content);
     } finally {
@@ -112,19 +116,30 @@ export default function ChatPage() {
   };
 
   return (
-    <div suppressHydrationWarning className="flex flex-col h-screen bg-slate-50 dark:bg-[#080808] text-slate-900 dark:text-white overflow-hidden relative transition-colors duration-500">
+    <div
+      suppressHydrationWarning
+      className="flex flex-col h-screen bg-slate-50 dark:bg-gym-black text-slate-900 dark:text-white overflow-hidden relative transition-colors duration-500"
+    >
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
-      {/* Background Textures */}
-      <div suppressHydrationWarning className="absolute inset-0 carbon-grid opacity-100 dark:opacity-30 pointer-events-none transition-opacity duration-500" />
-      <div suppressHydrationWarning className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[80%] bg-blue-500/10 dark:bg-[#00d4ff]/5 blur-[120px] pointer-events-none transition-colors duration-500" />
-      <div suppressHydrationWarning className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[50%] bg-gradient-to-t from-slate-50 dark:from-black/90 to-transparent pointer-events-none z-10 transition-colors duration-500" />
+      <div className="absolute inset-0 z-0">
+        <img
+          src="gymbro-background.jpeg"
+          alt="background"
+          className="w-full h-full object-cover opacity-50 dark:opacity-30"
+        />
+      </div>
 
-      {/* Header */}
-      <ChatHeader hasMessages={messages.length > 0} onReset={() => setMessages([])} />
+      <div className="absolute inset-0 carbon-grid opacity-50 dark:opacity-30 pointer-events-none transition-opacity duration-500 z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[80%] bg-blue-500/10 dark:bg-gym-blue/5 blur-[120px] pointer-events-none transition-colors duration-500 z-10" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[50%] bg-linear-to-t from-slate-50 dark:from-black/90 to-transparent pointer-events-none z-10 transition-colors duration-500" />
 
-      {/* Main Content */}
-      <main className="relative z-10 flex-1 overflow-y-auto p-4 sm:p-6 scroll-smooth custom-scrollbar">
+      <ChatHeader
+        hasMessages={messages.length > 0}
+        onReset={() => setMessages([])}
+      />
+
+      <main className="relative z-20 flex-1 overflow-y-auto p-4 sm:p-6 scroll-smooth custom-scrollbar">
         <div className="max-w-3xl mx-auto h-full">
           {messages.length === 0 ? (
             <EmptyState prompts={QUICK_PROMPTS} onPromptClick={sendMessage} />
@@ -140,13 +155,12 @@ export default function ChatPage() {
         </div>
       </main>
 
-      {/* Input Area (overlaying the main content slightly using absolute/fixed if we wanted, but sticking to flex is cleaner) */}
-      <div className="absolute bottom-0 w-full z-20">
-        <ChatInput 
-          input={input} 
-          setInput={setInput} 
-          onSubmit={sendMessage} 
-          isLoading={isLoading} 
+      <div className="absolute bottom-0 w-full z-30">
+        <ChatInput
+          input={input}
+          setInput={setInput}
+          onSubmit={sendMessage}
+          isLoading={isLoading}
         />
       </div>
     </div>
